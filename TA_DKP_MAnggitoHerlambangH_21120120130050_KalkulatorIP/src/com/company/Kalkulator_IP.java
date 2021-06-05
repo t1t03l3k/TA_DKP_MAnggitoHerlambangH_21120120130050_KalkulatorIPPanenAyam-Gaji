@@ -22,7 +22,7 @@ public class Kalkulator_IP {
     private JTextField textEkor;
 
 
-        public static void main(String[] args) {
+    public static void main(String[] args) {
         JFrame frame = new JFrame("Kalkulator_IP");
         frame.setContentPane(new Kalkulator_IP().panel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -49,9 +49,12 @@ public class Kalkulator_IP {
 
                 int bonus1 = 0;
                 int bonus2 = 0;
+                int a = 0;
 
 
                 if (Jenis.equals("Close")) {
+                    a = 180;
+
                     if (Ip > 520) {
                         bonus1 = 267;
                     } else if (Ip > 510) {
@@ -256,6 +259,8 @@ public class Kalkulator_IP {
                     }
 
                 } else if (Jenis.equals("Open")){
+                    a = 440;
+
                     if (Ip > 440) {
                         bonus1 = 460;
                     } else if (Ip > 430) {
@@ -454,6 +459,8 @@ public class Kalkulator_IP {
                     }
 
                 } else if (Jenis.equals("Upgrade")) {
+                    a = 300;
+
                     if (Ip > 520) {
                         bonus1 = 395;
                     } else if (Ip > 510) {
@@ -662,14 +669,18 @@ public class Kalkulator_IP {
                 }
 
                 if (Panen < Ekor){
-                    for (int i=0;i<=1;i++) {
-                        textIp.setText("Mohon maaf. Mungkin angka yang anda masukkan salah.");
+                    for (int i = 0; i <= 2; i++) {
+                        textIp.setText("Mohon maaf. Mungkin angka yang anda masukkan salah."+"\n");
                     }
 
                 } else {
-                    float gaji = (Populasi * 180) + (bonus1 * Panen) + (bonus2 * Panen);
+                    float gaji = (Populasi * a) + (bonus1 * Panen) + (bonus2 * Panen);
 
-                    textIp.setText("IP untuk panen saat ini adalah " + String.valueOf(Ip) + ". Dengan gaji anda periode ini adalah Rp " + (Math.round(gaji)));
+                    textIp.setText("IP untuk panen saat ini " + "\t" + "= "+String.valueOf(Ip) +"\n"
+                            +"BB untuk panen saat ini " + "\t" + "= "+String.valueOf(Bb)+" kg"+"\n"
+                            +"FC untuk panen saat ini " + "\t" + "= " + String.valueOf(Fc) + " kg"+"\n"
+                            +"Gaji anda periode ini " + "\t" + "= Rp " + (Math.round(gaji)) + "\n\n"
+                            +"*) Gaji belum termasuk karung, potongan bon, dan tambahan lainnya");
                 }
             }
         });
@@ -678,6 +689,7 @@ public class Kalkulator_IP {
             @Override
             public void actionPerformed(ActionEvent e) {
                 textPanen.setText("");
+                textEkor.setText("");
                 textPopulasi.setText("");
                 textPakan.setText("");
                 textUmur.setText("");
